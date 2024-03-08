@@ -27,7 +27,7 @@ class queue
     {
         return front==NULL;
     }
-    void enqueueR(int val)
+    void enqueue(int val)
     {
         Node *newnode=new Node();
         newnode->data=val;
@@ -37,19 +37,9 @@ class queue
             rear->next=newnode;
             rear=newnode;
         }
-    } void enqueueL(int val)
-    {
-        Node *newnode=new Node();
-        newnode->data=val;
-        if (isempty())
-            front=rear=newnode;
-        else{
-           front->prev=newnode;
-            newnode->next=front;
-            front=newnode;
-        }
     }
-    int dequeueF()
+    }
+    int dequeue()
     {
         int delpoint;
         if (isempty())
@@ -69,27 +59,7 @@ class queue
         }
         return delpoint;
     }
-    int dequeueL()
-    {
-        int delpoint;
-        if (isempty())
-        {
-            front=rear=NULL;
-        }
-        else if(front==rear)
-        {
-            delete front;
-        }
-        else{
-            Node *temp=rear;
-            rear=rear->prev;
-            rear->next=NULL;
-            delpoint=temp->data;
-            delete temp;
 
-        }
-        return delpoint;
-    }
     int getfront()
     {
         return front->data;
@@ -125,8 +95,26 @@ class queue
     {
         while(!isempty())
         {
-            dequeueF();
+            dequeue();
         }
+    }
+    int sum(int k)
+    {
+        int count
+        Node* temp=front;
+        while(temp!=NULL)
+        {
+            if(temp->data==k)
+            {
+                for(temp;temp->prev;temp=NULL)
+                {
+                    counter=+temp->data;
+
+                }
+                    break;
+            }
+        }
+        cout<<counter<<" ";
     }
     void display()
     {
@@ -142,11 +130,5 @@ class queue
 };
 int main()
 {
-    queue q;
- q.enqueueL(10);
-  q.enqueueL(20);
-   q.enqueueL(30);
-   q.display();
-   q.dequeueL();
-   q.display();
+
 }
